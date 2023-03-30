@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage{authblk}
+\usepackage[margin=2cm]{geometry}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{longtable}
+\usepackage{rotfloat}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{amssymb,amsmath,amsthm,amsfonts} 
+\usepackage[no-math]{fontspec} 
+\usepackage{mathspec}
+\usepackage{xunicode} 
+\usepackage{xltxtra} 
+\defaultfontfeatures{Scale=1.0, Mapping=tex-text}
+\newcommand*{\QEDA}{\null\nobreak\hfill\ensuremath{\square}}%
+\usepackage{tikz}
+% \usepackage[hidelinks]{hyperref}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titling}
+\usepackage{caption}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{multirow}
+
+\setmainfont{Times New Roman}
+\setmathfont{Minion Pro}
+\setCJKmainfont{宋體-繁}
+\renewcommand{\baselinestretch}{1.35}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+% \setlength{\droptitle}{5cm}
+% \pagenumbering{gobble} %This eliminate page numbers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{B09704016, 經濟三張茗傑}
+\fancyhead[RE,LO]{Labor Economics (I) PS2}
+\rfoot{\thepage}
+
+\setlength{\headheight}{13pt}
+\geometry{a4paper,left=1.75cm,right=1.75cm,top=2.75cm,bottom=2cm}
+\begin{document}
+
+\section{Identification}
+\subsection{Heuristic Identification} \label{Heuristic}
+\begin{enumerate}
+    \item “We don’t have enough sample size to identify the causal effects of the problem.”:\ As long as the identification set is singleton, we can identify the causal effects of the problem regardless of the sample size.
+          However, smaller sample size might indeed make it harder for researchers to conclude "strong" identification, so researchers might end up with a less conclusive identification.
+    \item “We don’t have a good identification strategy so I need to use a structural model.”:\ It is not the case that "the more things you estimate, the better your identification is."
+          A better strategy might be finding more useful observables for your identification process.
+    \item “Because I have a structural model, I don’t need to think about identification.”:\ Even if you have a structural model, you are still trying to figure out the causality. In this case, identification does matter so much.
+    \item “Because I can use the maximum likelihood estimator, I can identify that.”:\ Generally, MLE is about "estimating" but not "identifying". Estimations from MLE do not guarantee identification.
+\end{enumerate}
+
+\subsection{Identification of OLS} \label{OLS}
+\textbf{Proof.}\ \ We prove that $\beta$ in this simple OLS model is identified by contradiction. 
+So first, suppose that there exists $\beta^* \neq \beta$ belonging to the same identification set of $\beta$, 
+i.e. $$\beta^* x_i + \epsilon_i = \beta x_i + \epsilon_i$$
+which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
+
+\subsection{Identification of a Factor Model} \label{Factor}
+\begin{enumerate}
+    \item The only observable is $\{y_{it}\}$, so we start form it. 
+          \begin{flalign}
+                Cov(y_{it}, y_{it-1}) & = Cov(v_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \nonumber \\
+                                      & = Cov(\rho v_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \\
+                                      & = \rho Cov(v_{it-1}, v_{it-1}) & \\
+                                      & = \rho \sigma^2_v &
+          \end{flalign}
+          Note that form (1) to (2) we use the fact that $\epsilon_{it}$ and $\zeta_{it}$ are both i.i.d. across individuals, over time, and of each other. \\ 
+          Similiarly, 
+          \begin{flalign}
+                Cov(y_{it}, y_{it-2}) & = Cov(v_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
+                                      & = Cov(\rho (\rho \cdot v_{it-2} + \zeta_{it-1}) + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
+                                      & = Cov(\rho^2 v_{it-2} + \rho \zeta_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \\ 
+                                      & = \rho^2 Cov(v_{it-2}, v_{it-2}) & \\
+                                      & = \rho^2 \sigma^2_v & \nonumber
+          \end{flalign}
+          Again from (4) to (5) we use the fact that $\epsilon_{it}$ and $\zeta_{it}$ are both i.i.d. across individuals, over time, and of each other.
+          Therefore, $\rho$ is identified since 
+          $$\rho = \frac{\rho^2 \sigma^2_v}{\rho \sigma^2_v} = \frac{Cov(y_{it}, y_{it-2})}{Cov(y_{it}, y_{it-1})}$$ \QEDA
+      \item Now we have already identified $\rho$, so we can think of using it to identify other parameters.
+            First, notice that $$Var(y_{it}) = Var(v_{it} + \epsilon_{it}) = \sigma^2_v + \sigma^2_\epsilon$$
+            so we can think of identifying $\sigma^2_\epsilon$ by first identifying $\sigma^2_v$. 
+            By equation (3) we can derive that $$\sigma^2_v = \frac{Cov(y_{it}, y_{it-1})}{\rho}$$
+            so $\sigma^2_v$ is identified. Then, $\sigma^2_\epsilon$ can be identified by 
+            $$\sigma^2_\epsilon = Var(y_{it}) - \sigma^2_\epsilon$$ \QEDA
+      \item Now we have already identified $\rho$, $\sigma^2_v$, and $\sigma^2_\epsilon$, so we can think of using them to identify other parameters.
+      First, notice that 
+      \begin{align}
+      & Var(v_{it})                         = Var(\rho v_{it-1} + \zeta_{it}) = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
+      & \Rightarrow \sigma^2_v              = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
+      & \Rightarrow (1 - \rho^2) \sigma^2_v = \sigma^2_\zeta & \nonumber \\ 
+      & \Rightarrow \sigma^2_v = \frac{\sigma^2_\zeta}{1 - \rho^2} & \nonumber
+      \end{align}
+      $\sigma^2_\zeta$ is thus identified. \QEDA
+      \item We can calculate $Var(y_{it})$, $Cov(y_{it}, y_{it-1})$, and $Cov(y_{it}, y_{it-2})$. Then follow the precedures presented above, we can estimate these parameters.
+\end{enumerate}
+
+\subsection{Simulation of MLE} \label{MLE}
+\begin{enumerate}
+      \item By the additive property of normal distribution, $$y_i\thicksim N(0, \sigma^2_1 + \sigma^2_2)$$
+            so the probability density function (PDF) of $y$ is $$f(y) = \frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}$$
+            Therefore, the likelihood function is $$\mathcal{L}(\sigma^2_1 + \sigma^2_2) = \prod_{i = 1}^{N} \frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}$$
+            Moreover, the log-likelihood function is 
+            \begin{align}
+            \boldsymbol \ell(\sigma^2_1 + \sigma^2_2) & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}] & \nonumber \\ 
+                                                      & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}}] + \sum_{i = 1}^{N} [- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2] & \nonumber \\ 
+                                                      & = -\frac{N}{2} ln(\sigma^2_1 + \sigma^2_2) -\frac{N}{2} ln2\pi - \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & \nonumber
+            \end{align}
+\end{enumerate}
+
+\section{Potential Outcome Framework} \label{POF}
+\begin{enumerate}
+      \item With exact potential outcome notations in class, we can rewrite the Roy model into 
+            $$w_i = D_i \cdot w_{1i} + (1 - D_i) \cdot w_{0i}$$
+            where $w_i$ is often denoted by $Y_i$, $w_{1i}$ is often denoted by $Y_i(1)$, and $w_{0i}$ is often denoted by $Y_i(0)$.
+      \item As explained above, 
+      \begin{itemize}
+            \item $Y_i(0)$ is $w_{0i}$, which means the potential outcome (wage) without treatment (not to immigrate).
+            \item $Y_i(1)$ is $w_{1i}$, which means the potential outcome (wage) with treatment (immigrate).
+      \end{itemize}
+      \item $D_i$ means the state of being treated (immigrate) or not. \\ 
+            More specifically, $D_i$ is a dummy that takes value of 1 when $w_{1i} > w_{0i}$, i.e. $Y_i(1)$ > $Y_i(0)$ 
+            and takes value of 0 when $w_{1i} < w_{0i}$, i.e. $Y_i(1)$ < $Y_i(0)$.
+\end{enumerate}
+
+\section{Control for Observables} \label{control}
+\subsection{Rosenbaum and Rubin} \label{RR}
+
+\subsection{Propensity Score} \label{PS}
+\begin{enumerate}
+      \item 
+\end{enumerate}
+
+\end{document}
