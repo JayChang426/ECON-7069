@@ -113,8 +113,21 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
             \begin{align}
             \boldsymbol \ell(\sigma^2_1 + \sigma^2_2) & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}] & \nonumber \\ 
                                                       & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}}] + \sum_{i = 1}^{N} [- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2] & \nonumber \\ 
-                                                      & = -\frac{N}{2} ln(\sigma^2_1 + \sigma^2_2) -\frac{N}{2} ln2\pi - \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & \nonumber
+                                                      & = -\frac{N}{2} ln(\sigma^2_1 + \sigma^2_2) -\frac{N}{2} ln2\pi - \frac{1}{2(\sigma^2_1 + \sigma^2_2)} \sum_{i = 1}^{N}y_i^2 & \nonumber
             \end{align}
+      \item R script 1.4\_MLE\_Simulation.R is in my ECON-7069 repository \footnote{\url{https://github.com/JayChang426/ECON-7069.git}}.
+            Please find in the folder "PS2".
+      \item No, they can not be seperatly identified since the log-likelihood function can only identify parameters with observables. 
+            In this case, our only observable is $\{y_i\}^N_{i = 1}$, which only enables us to identify $\sigma^2_1 + \sigma^2_2$.
+      \item Taking first order derivative of our log-likelihood function, first order condition is
+            \begin{align}
+            \frac{d \boldsymbol \ell(\sigma^2_1 + \sigma^2_2)}{d (\sigma^2_1 + \sigma^2_2)} = -\frac{N}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} - \frac{1}{2} \frac{-1}{(\sigma^2_1 + \sigma^2_2)^2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
+            \Rightarrow -\frac{N}{2} + \frac{1}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
+            \Rightarrow \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = N & \nonumber \\ 
+            \Rightarrow \sigma^2_1 + \sigma^2_2 & = \frac{\sum_{i = 1}^{N}y_i^2}{N} & \nonumber \QEDA
+            \end{align}
+            Thus we can identify $\sigma^2_1 + \sigma^2_2$.
+      \item Even if we add up the results of $\sigma^2_1$ + $\sigma^2_2$ in 2. instead of taking them seperately, the sample size is still too small to make sense.
 \end{enumerate}
 
 \section{Potential Outcome Framework} \label{POF}
