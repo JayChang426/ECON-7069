@@ -69,19 +69,19 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
 \begin{enumerate}
     \item The only observable is $\{y_{it}\}$, so we start form it. 
           \begin{flalign}
-                Cov(y_{it}, y_{it-1}) & = Cov(v_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \nonumber \\
-                                      & = Cov(\rho v_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \\
-                                      & = \rho Cov(v_{it-1}, v_{it-1}) & \\
-                                      & = \rho \sigma^2_v &
+                  Cov(y_{it}, y_{it-1}) & = Cov(v_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \nonumber \\
+                                        & = Cov(\rho v_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-1} + \epsilon_{it-1}) & \\
+                                        & = \rho Cov(v_{it-1}, v_{it-1}) & \\
+                                        & = \rho \sigma^2_v &
           \end{flalign}
           Note that form (1) to (2) we use the fact that $\epsilon_{it}$ and $\zeta_{it}$ are both i.i.d. across individuals, over time, and of each other. \\ 
           Similiarly, 
           \begin{flalign}
-                Cov(y_{it}, y_{it-2}) & = Cov(v_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
-                                      & = Cov(\rho (\rho \cdot v_{it-2} + \zeta_{it-1}) + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
-                                      & = Cov(\rho^2 v_{it-2} + \rho \zeta_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \\ 
-                                      & = \rho^2 Cov(v_{it-2}, v_{it-2}) & \\
-                                      & = \rho^2 \sigma^2_v & \nonumber
+                  Cov(y_{it}, y_{it-2}) & = Cov(v_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
+                                        & = Cov(\rho (\rho \cdot v_{it-2} + \zeta_{it-1}) + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \nonumber \\ 
+                                        & = Cov(\rho^2 v_{it-2} + \rho \zeta_{it-1} + \zeta_{it} + \epsilon_{it}, v_{it-2} + \epsilon_{it-2}) & \\ 
+                                        & = \rho^2 Cov(v_{it-2}, v_{it-2}) & \\
+                                        & = \rho^2 \sigma^2_v & \nonumber
           \end{flalign}
           Again from (4) to (5) we use the fact that $\epsilon_{it}$ and $\zeta_{it}$ are both i.i.d. across individuals, over time, and of each other.
           Therefore, $\rho$ is identified since 
@@ -95,10 +95,10 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
       \item Now we have already identified $\rho$, $\sigma^2_v$, and $\sigma^2_\epsilon$, so we can think of using them to identify other parameters.
       First, notice that 
       \begin{align}
-      & Var(v_{it})                         = Var(\rho v_{it-1} + \zeta_{it}) = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
-      & \Rightarrow \sigma^2_v              = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
-      & \Rightarrow (1 - \rho^2) \sigma^2_v = \sigma^2_\zeta & \nonumber \\ 
-      & \Rightarrow \sigma^2_v = \frac{\sigma^2_\zeta}{1 - \rho^2} & \nonumber
+            & Var(v_{it})                         = Var(\rho v_{it-1} + \zeta_{it}) = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
+            & \Rightarrow \sigma^2_v              = \rho^2 \sigma^2_v + \sigma^2_\zeta & \nonumber \\ 
+            & \Rightarrow (1 - \rho^2) \sigma^2_v = \sigma^2_\zeta & \nonumber \\ 
+            & \Rightarrow \sigma^2_v = \frac{\sigma^2_\zeta}{1 - \rho^2} & \nonumber
       \end{align}
       $\sigma^2_\zeta$ is thus identified. \QEDA
       \item We can calculate $Var(y_{it})$, $Cov(y_{it}, y_{it-1})$, and $Cov(y_{it}, y_{it-2})$. Then follow the precedures presented above, we can estimate these parameters.
@@ -111,9 +111,9 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
             Therefore, the likelihood function is $$\mathcal{L}(\sigma^2_1 + \sigma^2_2) = \prod_{i = 1}^{N} \frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}$$
             Moreover, the log-likelihood function is 
             \begin{align}
-            \boldsymbol \ell(\sigma^2_1 + \sigma^2_2) & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}] & \nonumber \\ 
-                                                      & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}}] + \sum_{i = 1}^{N} [- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2] & \nonumber \\ 
-                                                      & = -\frac{N}{2} ln(\sigma^2_1 + \sigma^2_2) -\frac{N}{2} ln2\pi - \frac{1}{2(\sigma^2_1 + \sigma^2_2)} \sum_{i = 1}^{N}y_i^2 & \nonumber
+                  \boldsymbol \ell(\sigma^2_1 + \sigma^2_2) & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}} e^{- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2}] & \nonumber \\ 
+                                                            & = \sum_{i = 1}^{N} ln[\frac{1}{\sqrt{2 \pi} \sqrt{\sigma^2_1 + \sigma^2_2}}] + \sum_{i = 1}^{N} [- \frac{1}{2} (\frac{y_i}{\sqrt{\sigma^2_1 + \sigma^2_2}})^2] & \nonumber \\ 
+                                                            & = -\frac{N}{2} ln(\sigma^2_1 + \sigma^2_2) -\frac{N}{2} ln2\pi - \frac{1}{2(\sigma^2_1 + \sigma^2_2)} \sum_{i = 1}^{N}y_i^2 & \nonumber
             \end{align}
       \item R script 1.4\_MLE\_Simulation.R is in my ECON-7069 repository \footnote{\url{https://github.com/JayChang426/ECON-7069.git}}.
             Please find in the folder "PS2".
@@ -121,10 +121,10 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
             In this case, our only observable is $\{y_i\}^N_{i = 1}$, which only enables us to identify $\sigma^2_1 + \sigma^2_2$.
       \item Taking first order derivative of our log-likelihood function, first order condition is
             \begin{align}
-            \frac{d \boldsymbol \ell(\sigma^2_1 + \sigma^2_2)}{d (\sigma^2_1 + \sigma^2_2)} = -\frac{N}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} - \frac{1}{2} \frac{-1}{(\sigma^2_1 + \sigma^2_2)^2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
-            \Rightarrow -\frac{N}{2} + \frac{1}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
-            \Rightarrow \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = N & \nonumber \\ 
-            \Rightarrow \sigma^2_1 + \sigma^2_2 & = \frac{\sum_{i = 1}^{N}y_i^2}{N} & \nonumber \QEDA
+                  \frac{d \boldsymbol \ell(\sigma^2_1 + \sigma^2_2)}{d (\sigma^2_1 + \sigma^2_2)} = -\frac{N}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} - \frac{1}{2} \frac{-1}{(\sigma^2_1 + \sigma^2_2)^2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
+                  \Rightarrow -\frac{N}{2} + \frac{1}{2} \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = 0 & \nonumber \\ 
+                  \Rightarrow \frac{1}{\sigma^2_1 + \sigma^2_2} \sum_{i = 1}^{N}y_i^2 & = N & \nonumber \\ 
+                  \Rightarrow \sigma^2_1 + \sigma^2_2 & = \frac{\sum_{i = 1}^{N}y_i^2}{N} & \nonumber \QEDA
             \end{align}
             Thus we can identify $\sigma^2_1 + \sigma^2_2$.
       \item Even if we add up the results of $\sigma^2_1$ + $\sigma^2_2$ in 2. instead of taking them seperately, the sample size is still too small to make sense.
@@ -147,10 +147,86 @@ which implies $\beta^* = \beta (\Rightarrow \Leftarrow )$ \QEDA
 
 \section{Control for Observables} \label{control}
 \subsection{Rosenbaum and Rubin} \label{RR}
+First, we need to define some notations following Rosenbaum and Rubin (1983): 
+\begin{enumerate}
+      \item Similar to what was defined in potential outcome framework, the ith observation has both a response $r_{1i}$ under treatment 1, and a response $r_{0i}$ under treatment 0, i.e. not treated.
+      \item For all observations, $Z_i = 1$ if treated and $Z_i = 0$ if not treated.
+      \item A balancing score, $b(x)$, is a function of the observed covariates $x$ such that the conditional distribution of $x$ given $b(x)$ is the same for treated $(Z_i = 1)$ and control $(Z_i = 0)$ groups, i.e. 
+            $$x\ \bot\ Z\ |\ b(x)$$
+      \item The propensity score, $e(x) = Pr(Z_i = 1|x)$, which is the propensity towards exposure to treatment 1 given the observed covariates $x$.
+\end{enumerate}
+\textbf{Theorem 1.}\ \ Treatment assignment and the observed covariates are conditionally independent given the propensity score, that is, 
+$$x\ \bot\ Z\ |\ e(x)$$
+\textbf{Proof.}\ \ Since \textbf{Theorem 1.} is just a special case of \textbf{Theorem 2.}, please see the proof of \textbf{Theorem 2.} as follows. \\ 
+\textbf{Theorem 2.}\ \ Let $b(x)$ be a function of $x$, then $b(x)$ is a balancing score, i.e. $x\ \bot\ Z \mid b(x)$ if and only if $(\Longleftrightarrow)$ $b(x)$ is finer than $e(x)$ in the sense that $e(x) = f\{b(x)\}$ for some function $f(\cdot)$. \\ 
+\textbf{Proof.}\ \ We first prove the $\Leftarrow)$ direction, i.e. if $b(x)$ is finer than $e(x)$ in the sense that $e(x) = f\{b(x)\}$ for some function $f(\cdot)$, then $b(x)$ is a balancing score. \\ 
+To show $b(x)$ is a balancing score, it suffices to show that 
+\begin{equation}
+Pr[Z = 1 \mid b(x)] = e(x)
+\end{equation}
+because $e(x) = Pr(Z_i = 1|x)$, which is by construction a balancing score. \\ 
+Now by the definition of $e(x)$ in point 4. of the notation definitions
+$$Pr[Z = 1 \mid b(x)] = \mathbb{E} [e(x) \mid b(x)]$$
+But since $b(x)$ is finer than $e(x)$, i.e. $e(x) = f\{b(x)\}$ for some function $f(\cdot)$,
+$$\mathbb{E} [e(x) \mid b(x)] = \mathbb{E} \{e(x) \mid f^{-1}[e(x)]\} = e(x)$$
+by $\mathbb{E} (X | X) = X$, and therefore equation (6) is satisfied. \\ 
+For the opposite $\Rightarrow)$ direction, i.e. if $b(x)$ is a balancing score, then $b(x)$ is finer than $e(x)$ in the sense that $ e(x) = f\{b(x)\}$ for some function $f(\cdot)$. \\ 
+Suppose that $b(x)$ is a balancing score but not finer than $e(x)$, so there exist $x_1$ and $x_2$ such that $e(x_1) \neq e(x_2)$ but $b(x_1) = b(x_2)$. 
+Then $Pr(Z = 1 \mid x_1) \neq Pr(Z = 1 \mid x_2)$ and thus $Z$ and $x$ are not conditionally independent given $b(x)$, so $b(x)$ is not a balancing score. $(\Rightarrow \Leftarrow )$ \QEDA \\ 
+\textbf{Theorem 3.}\ \ If treatment assignment is strongly ignorable given $x$, then it is strongly ignorable given any $b(x)$, that is,
+$$(r_{1i}, r_{0i})\ \bot\ Z \mid x \Rightarrow (r_{1i}, r_{0i})\ \bot\ Z \mid b(x) $$
+\textbf{Proof.}\ \ for the above statement to hold, we need to prove that 
+$$Pr[Z_i = 1 \mid r_{1i}, r_{0i}, b(x)] = Pr[Z_i = 1 \mid b(x)]$$
+which by equation (6), is equivalent to show that
+$$Pr[Z_i = 1 \mid r_{1i}, r_{0i}, b(x)] = e(x)$$
+Now we start from
+$$Pr[Z_i = 1 \mid r_{1i}, r_{0i}, b(x)] = \mathbb{E} [Pr(Z_i = 1 \mid r_{1i}, r_{0i}, x) \mid r_{1i}, r_{0i}, b(x)]$$
+which by assumption equals $\mathbb{E} [Pr(Z_i = 1 | x) \mid r_{1i}, r_{0i}, b(x)]$ and by definition equals $\mathbb{E} [e(x) \mid r_{1i}, r_{0i}, b(x)]$. 
+Finally, since $b(x)$ is finer than $e(x)$, it equals to $e(x)$. \QEDA
 
 \subsection{Propensity Score} \label{PS}
 \begin{enumerate}
-      \item 
+      \item Let's pick $\beta_1 = 0.1$ and $\beta_2 = 0.05$.
+      \item $X_1$ can be total year of education. \\ 
+            Define $D_i$ as 
+            \begin{align}
+                  \begin{cases}
+                        D_i = 1\ \ \text{when}\ \ w_{1i} - w_{0i} \geq 0 \\
+                        D_i = 0\ \ \text{when}\ \ w_{1i} - w_{0i} < 0 \nonumber
+                  \end{cases}
+            \end{align}
+            that is, $D_i = 1$ if
+            \begin{align}
+                  \mu_1 + \beta_1 X_1 + \beta_2 X_2 + \epsilon_1 - (\mu_0 + \beta_1 X_1 + \epsilon_0) \geq 0 \nonumber \\
+                  \Rightarrow (\mu_1 - \mu_0) + \beta_2 X_2 + (\epsilon_1 - \epsilon_0) \geq 0 \nonumber     
+            \end{align}
+            Therefore, we cannot identify $\beta_1$.
+      \item We define $\text{propensity score} = Pr(D_i = 1 \mid X = x)$
+      \item Recall that we defined $v = \epsilon_1 - \epsilon_0$ in problem set 1. \\ 
+            Now according to the model here, we'll define $z = \frac{\mu_0 - \mu_1 - \beta_2 X_2}{\sigma_v}$.
+            \begin{align}
+                  Pr(D_i = 1 \mid X = x) & = Pr(\mu_1 + \beta_1 X_1 + \beta_2 X_2 + \epsilon_1 - (\mu_0 + \beta_1 X_1 + \epsilon_0) \geq 0 \mid X = x) \nonumber \\ 
+                                         & = Pr(\epsilon_1 - \epsilon_0 \geq \mu_0 - \mu_1 - \beta_2 X_2 \mid X = x) \nonumber \\ 
+                                         & = Pr(\frac{v}{\sigma_v} \geq \frac{\mu_0 - \mu_1 - \beta_2 X_2}{\sigma_v} \mid X = x) \nonumber \\ 
+                                         & = 1 - \Phi (z \mid X = x) \nonumber 
+            \end{align} \QEDA
+      \item R script 3.propensity\_score\_simulation.R is in my ECON-7069 repository \footnote{\url{https://github.com/JayChang426/ECON-7069.git}}.
+            Please find in the folder "PS2".
+      \item See the code in 3.propensity\_score\_simulation.R is in my ECON-7069 repository.
+      \item Correlation coefficient is 0.9996493, nearly 1.
+      \item For the code, see 3.propensity\_score\_simulation.R is in my ECON-7069 repository. \\ 
+            When using the derived formula, the intercept is 2.5775018 and coefficient on I is 0.2587068. \\ 
+            When using logit, the intercept is 2.5781721 and coefficient on I is 0.2546473.
+      \item For the code, see 3.propensity\_score\_simulation.R is in my ECON-7069 repository. \\ 
+            The intercept is 2.5279400 and coefficient on I is 0.3592014, so we cannot recover the parameters.
+      \item For the code, see 3.propensity\_score\_simulation.R is in my ECON-7069 repository. \\ 
+            The intercept is 2.22723110, the coefficient on I is 0.20549727, and the coefficient on $X_2$ is 0.03377549, so we still cannot recover the parameters.
 \end{enumerate}
 
 \end{document}
+
+Since we can find nore than one $\beta_1$ that simultaneously satisfy the model, that is 
+            \begin{align}
+            w_o & = \mu_0 + \beta_1^* X_1 + \epsilon_0 = \mu_0 + \hat{\beta_1}  X_1 + \epsilon_0 \nonumber \\
+            w_1 & = \mu_1 + \beta_1^* X_1 + \beta_2^* X_2 + \epsilon_1 = \mu_1 + \hat{\beta_1} X_1 + \beta_2^* X_2 + \epsilon_1 \nonumber
+            \end{align}
